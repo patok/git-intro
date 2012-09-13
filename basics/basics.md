@@ -101,7 +101,7 @@ tengo modificaciones
     build/    # ignore all files in the build/ directory
     doc/*.txt # ignore doc/notes.txt, but not doc/server/arch.txt
 
-!SLIDE commandline smaller
+!SLIDE commandline smaller incremental
 ## Viendo los cambios  ##
     $ git status
     # On branch master
@@ -151,7 +151,7 @@ tengo modificaciones
     +Grit is a Ruby library for extracting information from a Git repository     
 
 
-!SLIDE commandline smaller
+!SLIDE commandline smaller incremental
 ## Commiteando los cambios ##
 
     $ git commit
@@ -169,7 +169,7 @@ tengo modificaciones
     ~
     ".git/COMMIT_EDITMSG" 10L, 283C
 
-!SLIDE commandline smaller
+!SLIDE commandline smaller incremental
 ## Borrando ##
 
     $ git rm grit.gemspec
@@ -197,7 +197,7 @@ tengo modificaciones
     #       renamed:    README.txt -> README
     #
 
-git es suficientemente intelgente para detectarlo si no se lo informamos
+git es suficientemente inteligente para detectarlo si no se lo informamos
 
     $ mv README.txt README
     $ git rm README.txt
@@ -222,7 +222,9 @@ supongamos este caso
     #       modified:   README.txt
     #       modified:   benchmarks.rb
     #
+
 y queremos volver para atrás y no commitear benchmarks.rb
+
     $ git reset HEAD benchmarks.rb
     benchmarks.rb: locally modified
     $ git status
@@ -283,13 +285,13 @@ Los repositorios remotos permiten compartir el código, básicamente son copias 
 *push*, *fetch* (*pull*)
 
 
-!SLIDE commandline smaller
+!SLIDE commandline smaller incremental
 ### Mostrando repos remotos (remote -v) ###
 
     $ git remote -v
     origin  git://github.com/schacon/ticgit.git
 
-!SLIDE commandline smaller
+!SLIDE commandline smaller incremental
 ### Agregando repo remoto (remote add) ###
 
     $ git remote
@@ -300,7 +302,7 @@ Los repositorios remotos permiten compartir el código, básicamente son copias 
     pb  git://github.com/paulboone/ticgit.git
 
 
-!SLIDE commandline smaller
+!SLIDE commandline smaller incremental
 ### Actualizando repo remoto (fetch) ###
 
     $ git fetch pb
@@ -313,13 +315,13 @@ Los repositorios remotos permiten compartir el código, básicamente son copias 
      * [new branch]      ticgit     -> pb/ticgit
 
 
-!SLIDE commandline smaller
+!SLIDE commandline smaller incremental
 ### Pusheando/subiendo cambios a repo remoto (push) ###
 
     $ git push origin master
 
 
-!SLIDE commandline smaller
+!SLIDE commandline smaller incremental
 ### Info sobre repo remoto (remote show) ###
 
     $ git remote show origin

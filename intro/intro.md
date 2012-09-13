@@ -17,42 +17,37 @@
 !SLIDE smaller bullets incremental
 # Qué es git? #
 * es un sistema de _código abierto_ de control de versiones 
-* diseñado para ser 
-** veloz
-** simple
-** distribuido
-** soporte desarrollo no lineal (muchas ramas en paralelo)
-** maneje grandes proyectos de manera eficiente (tiempo y espacio) 
+* diseñado para ser: veloz, simple, distribuido, soporte desarrollo no lineal (muchas ramas en paralelo), maneje grandes proyectos de manera eficiente (tiempo y espacio) 
 * se desarrolló como control de versiones para el kernel del SO Linux en el 2005
 * su autor es Linus Torvalds (autor tb del kernel linux)
 
 .notes segunda acepción: un rastreador estúpido/simple de info - [stupid content tracker](http://translate.google.com/#auto|es|you%20are%20a%20git)
 
 !SLIDE smaller
-## Taxonomías  SCM ##
-### clasificación según almacenamiento: ###
+# Taxonomías  SCM #
+## Tipo almacenamiento: ##
 * diffs/deltas
 * DAG/snapshots
 
-!SLIDE
-## Taxonomías  SCM ##
-### Delta vs Snapshot###
+!SLIDE smaller
+# Taxonomías  SCM #
+## Deltas vs Snapshots ##
 ![delta](diff-storage-5.png)
 ![dag](snapshot-storage-5.png)
 
-!SLIDE
-## Taxonomías  SCM ##
-### Clasificación según arquitectura ###
+!SLIDE small
+# Taxonomías  SCM #
+## Clasificación según arquitectura ##
 * local: restringido a la máquina de trabajo
 * centralizado: cliente-servidor, única fuente autorizada
 * distribuido: red de pares, hay múltiples copias in-sync
 
-!SLIDE transition=fade
-## Taxonomías  SCM ##
-### Matriz de clasificación ##
+!SLIDE transition=fade smaller
+# Taxonomías  SCM #
+## Matriz de clasificación ##
 ![tax](taxonomy-matrix.png)
 
-!SLIDE
+!SLIDE smaller
 ## Características ##
 * operaciones locales (copia local del repo, no se necesita estar conectado): checkouts, commits, branching, análisis historia
 * integridad: cada objeto en la bbdd posee un hash (SHA1 - hex de 40 dígitos - criptográficamente seguro )
