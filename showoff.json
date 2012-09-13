@@ -1,0 +1,9 @@
+{"name":"Introducción a GIT",
+ "sections":[
+    {"section":"intro"},
+    {"section":"basics"},
+    {"section":"branching"},
+    {"section":"workflows"},
+    {"section":"references"}
+ ]
+}
