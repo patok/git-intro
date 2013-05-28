@@ -62,6 +62,11 @@ Git resetea el directorio de trabajo para que sea el mismo que corresponde al ú
 
 listo para deployar en producción y volver a la story!
 
+!SLIDE smaller
+### Fast forwarding branches ###
+
+Una rama que acaba de ser actualizada con commits mas recientes, es susceptible de hacerle fast-forwarding cuando sus commits son ancestros de los nuevos commits.
+
 !SLIDE commandline smaller
 ## Vuelvo a la story ##
     
@@ -174,69 +179,4 @@ Topic branches por el contrario tiene muy corta vida
 toma el commit C3 y lo reaplica en el branch generando un nuevo commit C3'
 
 
-!SLIDE
-# Repositorios Remotos #
-## Ejemplos de uso ##
-
-!SLIDE
-##Repo remoto##
-![remote](remote1.png)
-
-.notes 42:00 video gallantgames
-
-!SLIDE transition=fade
-##Repo remoto##
-![remote](remote2.png)
-
-!SLIDE transition=fade
-##Repo remoto##
-![remote](remote3.png)
-
-!SLIDE transition=fade
-##Repo remoto##
-![remote](remote4.png)
-
-!SLIDE transition=fade
-##Repo remoto##
-![remote](remote5.png)
-
-!SLIDE transition=fade
-##Repo remoto##
-![remote](remote6.png)
-
-!SLIDE transition=fade
-##Repo remoto##
-![remote](remote7.png)
-
-!SLIDE transition=fade
-##Repo remoto##
-![remote](remote8.png)
-
-!SLIDE transition=fade
-##Repo remoto##
-![remote](remote9.png)
-
-!SLIDE transition=fade
-##Repo remoto##
-![remote](remote10.png)
-
-!SLIDE transition=fade
-##Repo remoto##
-![remote](remote11.png)
-
-!SLIDE transition=fade
-##Repo remoto##
-![remote](remote12.png)
-
-!SLIDE transition=fade
-##Repo remoto##
-![remote](remote13.png)
-
-!SLIDE transition=fade
-##Repo remoto##
-![remote](remote14.png)
-
-!SLIDE transition=fade
-##Repo remoto##
-![remote](remote15.png)
 
