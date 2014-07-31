@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Introducción a GIT</title>
+
+        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+        <meta name="author" content="Hakim El Hattab">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+        <script>
+            if( window.location.search.match( /print-pdf/gi ) ) {
+                var link = document.createElement( 'link' );
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.href = 'css/print/pdf.css';
+                document.getElementsByTagName( 'head' )[0].appendChild( link );
+            }
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+
+        <style type="text/css">
+
+
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+
+                <!-- Slide #1 -->
+                <section>
+                    <h1>Introducción a GIT</h1>
+                    <p><img title="Git logo" src="img/2color-lightbg.png"></p>
+                    <p>
+                        <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+                            <img alt="Licencia Creative Commons" style="border-width:0" src="img/cc-by-nc-sa-88x31.png" />
+                        </a>
+                    </p>
+                    <p>
+                        <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">Introducción a GIT</span> por <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Patricio Keilty</span> se encuentra bajo una Licencia <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Atribución-NoComercial-CompartirDerivadasIgual 3.0 Unported</a>.
+                    </p>
+                </section>
+
+                <!-- Slide #2 -->
+                <section>
+                    <h1>Contenido</h1>
+                    <ul>
+                        <li>Intro</li>
+                        <li>Basics</li>
+                        <li>Branching</li>
+                        <li>Workflows</li>
+                        <li>References</li>
+                    </ul>
+                </section>
+
+                <!-- Slide #3 -->
+                <section>
+                    <h1>Qué es git?</h1>
+                    <ul>
+                        <li>es un sistema de _código abierto_ de control de versiones</li>
+                        <li>diseñado para ser: veloz, simple, distribuido, soporte desarrollo no lineal (muchas ramas en paralelo),maneje grandes proyectos de manera eficiente (tiempo y espacio)</li>
+                        <li>se desarrolló como control de versiones para el kernel del SO Linux en el 2005</li>
+                        <li>su autor es Linus Torvalds (autor tb del kernel linux)</li>
+                    </ul>
+                    <p>segunda acepción: un rastreador estúpido/simple de info - <a href="http://translate.google.com/#auto|es|you%20are%20a%20git">stupid content tracker</a></p>
+                </section>
+
+                <!-- Slide #5 -->
+                <section>
+                    <h1>Taxonomías  SCM</h1>
+                    <h2>Tipo almacenamiento:</h2>
+                    <ul>
+                        <li>diffs/deltas</li>
+                        <li>DAG/snapshots</li>
+                    </ul>
+                </section>
+
+                <!-- Slide #6 -->
+                <section>
+                    <h1>Taxonomías  SCM</h1>
+                    <h2>Deltas vs Snapshots<h2>
+                    <div style="position: relative; margin: 0 auto; width: 490px; height: 223px;">
+                        <div class="fragment fade-out" style="position: absolute; z-index: 2;">
+                            <img title="delta" src="img/diff-storage-5.png">
+                        </div>
+                        <div style="position: absolute; z-index: 1;">
+                            <img title="dag" src="img/snapshot-storage-5.png">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide #7 -->
+                <section>
+
+                    <h1>Taxonomías  SCM</h1>
+                    <h2>Clasificación según arquitectura</h2>
+                        <li>local: restringido a la máquina de trabajo</li>
+                        <li>centralizado: cliente-servidor, única fuente autorizada</li>
+                        <li>distribuido: red de pares, hay múltiples copias in-sync</li>
+                </section>
+
+                <!-- Slide #8 -->
+                <section>
+                    <h1>Taxonomías  SCM</h1>
+                    <h2>Matriz de clasificación</h2>
+                    <img title="tax" src="img/taxonomy-matrix.png">
+                </section>
+
+                <!-- Slide #9 -->
+                <section>
+                    <h2>Características</h2>
+                        <li>operaciones locales (copia local del repo, no se necesita estar conectado): </li>checkouts, commits, branching, análisis historia
+                        <li>integridad: cada objeto en la bbdd posee un hash (SHA1 - hex de 40 dígitos -criptográficamente seguro )</li>
+                        <li>estructura simple de almacenamiento: siempre se escriben datos, no se actualizan</li>
+                        <li>files 3 estados: commiteado, modificado y en staging (listo para commitear)</li>
+                </section>
+
+                <!-- Slide #10 -->
+                <section>
+                    <h2>Estados de un file</h2>
+                    <img title="local" src="img/local-states.png">
+                </section>
+
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                // available themes are in /css/theme
+                theme: Reveal.getQueryHash().theme,
+
+                // default/cube/page/concave/zoom/linear/fade/none
+                transition: Reveal.getQueryHash().transition || 'fade',
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>
