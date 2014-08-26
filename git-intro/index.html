@@ -6,8 +6,8 @@
 
         <title>Introducción a GIT</title>
 
-        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-        <meta name="author" content="Hakim El Hattab">
+        <meta name="description" content="Introducción a Git">
+        <meta name="author" content="Patricio Keilty">
 
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -101,12 +101,12 @@
                 <!-- Slide #6 -->
                 <section>
                     <h1>Taxonomías  SCM</h1>
-                    <h2>Deltas vs Snapshots<h2>
+                    <h2><span class="fragment highlight-red" data-fragment-index="1">Deltas</span><span class="fragment" data-fragment-index="2"> vs Snapshots</span><h2>
                     <div style="position: relative; margin: 0 auto; width: 490px; height: 223px;">
-                        <div class="fragment fade-out" style="position: absolute; z-index: 2;">
+                        <div class="fragment current-visible" data-fragment-index="1" style="position: absolute; z-index: 0;">
                             <img title="delta" src="img/diff-storage-5.png">
                         </div>
-                        <div style="position: absolute; z-index: 1;">
+                        <div class="fragment current-visible" data-fragment-index="2" style="position: absolute; z-index: 1;">
                             <img title="dag" src="img/snapshot-storage-5.png">
                         </div>
                     </div>
@@ -117,9 +117,9 @@
 
                     <h1>Taxonomías  SCM</h1>
                     <h2>Clasificación según arquitectura</h2>
-                        <li>local: restringido a la máquina de trabajo</li>
-                        <li>centralizado: cliente-servidor, única fuente autorizada</li>
-                        <li>distribuido: red de pares, hay múltiples copias in-sync</li>
+                        <li class="fragment grow">local: restringido a la máquina de trabajo</li>
+                        <li class="fragment grow">centralizado: cliente-servidor, única fuente autorizada</li>
+                        <li class="fragment grow">distribuido: red de pares, hay múltiples copias in-sync</li>
                 </section>
 
                 <!-- Slide #8 -->
@@ -132,10 +132,10 @@
                 <!-- Slide #9 -->
                 <section>
                     <h2>Características</h2>
-                        <li>operaciones locales (copia local del repo, no se necesita estar conectado): </li>checkouts, commits, branching, análisis historia
-                        <li>integridad: cada objeto en la bbdd posee un hash (SHA1 - hex de 40 dígitos -criptográficamente seguro )</li>
-                        <li>estructura simple de almacenamiento: siempre se escriben datos, no se actualizan</li>
-                        <li>files 3 estados: commiteado, modificado y en staging (listo para commitear)</li>
+                        <li class="fragment highlight-blue">operaciones locales (copia local del repo, no se necesita estar conectado): checkouts, commits, branching, análisis historia</li>
+                        <li class="fragment highlight-blue">integridad: cada objeto en la bbdd posee un hash (SHA1 - hex de 40 dígitos -criptográficamente seguro )</li>
+                        <li class="fragment highlight-blue">estructura simple de almacenamiento: siempre se escriben datos, no se actualizan</li>
+                        <li class="fragment highlight-blue">files 3 estados: commiteado, modificado y en staging (listo para commitear)</li>
                 </section>
 
                 <!-- Slide #10 -->
@@ -143,6 +143,374 @@
                     <h2>Estados de un file</h2>
                     <img title="local" src="img/local-states.png">
                 </section>
+
+		<!-- -->
+                <section>
+                    <h2>Conectándose a un repo</h2>
+			<ul>
+			<li><p>inicializando local</p>
+			<p><pre><code data-trim>$ git init</code></pre></p></li>
+			<li><p>clonar un repo remoto</p>
+			<p><pre><code data-trim>$ git clone git://github.com/schacon/grit.git</code></pre></p></li>
+			</ul>
+                </section>
+
+		<!-- -->
+                <section>
+                    <h2>.git directory</h2>
+			<p><pre><code data-trim>
+    $ tree .git
+    .git
+    |-- config
+    |-- description
+    |-- HEAD
+    |-- hooks
+    |   |-- commit-msg.sample
+    |-- index
+    |-- info
+    |   `-- exclude
+    |-- objects
+    |   |-- info
+    |   `-- pack
+    `-- refs
+        |-- heads
+        `-- tags
+			</code></pre></p></li>
+                </section>
+
+		<!-- -->
+                <section>
+                    <h2>Chequeando estado</h2>
+			<p>nada que commitear</p>
+			<p><pre><code data-trim>
+    $ git status
+    # On branch master
+    nothing to commit (working directory clean)
+			</code></pre></p></li>
+                </section>
+
+		<!-- code -->
+                <section>
+                    <h2>Chequeando estado</h2>
+			<p>tengo modificaciones</p>
+			<p><pre><code>
+    $ vim README
+    $ git status
+    # On branch master
+    # Untracked files:
+    #   (use "git add <file>..." to include in what will be committed)
+    #
+    #   README
+    nothing added to commit but untracked files present (use "git add" to track)
+
+			</code></pre></p></li>
+                </section>
+
+		<!-- code -->
+                <section>
+                    <h2>Agregando nuevos files</h2>
+			<p></p>
+			<p><pre><code>
+    $ git add README
+
+    $ git status
+    # On branch master
+    # Changes to be committed:
+    #   (use "git reset HEAD <file>..." to unstage)
+    #
+    #   new file:   README
+    #
+			</code></pre></p></li>
+                </section>
+
+		<!-- code -->
+                <section>
+                    <h2>Subiendo modificaciones a staging</h2>
+			<p></p>
+			<p><pre><code>
+    $ git status
+    # On branch master
+    # Changes to be committed:
+    #   (use "git reset HEAD <file>..." to unstage)
+    # 
+    #   new file:   README
+    #
+    # Changed but not updated:
+    #   (use "git add <file>..." to update what will be committed)
+    # 
+    #   modified:   benchmarks.rb
+    # 
+
+    $ git add benchmarks.rb
+    $ git status
+    # On branch master
+    # Changes to be committed:
+    #   (use "git reset HEAD <file>..." to unstage)
+    # 
+    #   new file:   README
+    #   modified:   benchmarks.rb
+    # 
+			</code></pre></p></li>
+                </section>
+
+		<!-- code -->
+                <section>
+                    <h2>Ignorando cambios (.gitignore)</h2>
+			<p></p>
+			<p><pre><code data-trim>
+    $ cat .gitignore 
+    *target/
+    *.settings/
+    *.classpath
+    *.project
+    *bin/
+			</code></pre></p></li>
+			<p><pre><code data-trim>
+    # a comment - this is ignored
+    *.a       # no .a files
+    !lib.a    # but do track lib.a, even though you're ignoring .a files above
+    /TODO     # only ignore the root TODO file, not subdir/TODO
+    build/    # ignore all files in the build/ directory
+    doc/*.txt # ignore doc/notes.txt, but not doc/server/arch.txt
+			</code></pre></p></li>
+                </section>
+
+		<!-- code -->
+                <section>
+                    <h2>Viendo cambios con mas detalle</h2>
+			<p></p>
+			<p><pre><code data-trim>
+    $ git status
+    # On branch master
+    # Changes to be committed:
+    #   (use "git reset HEAD <file>..." to unstage)
+    #
+    #   new file:   README
+    #
+    # Changed but not updated:
+    #   (use "git add <file>..." to update what will be committed)
+    #
+    #   modified:   benchmarks.rb
+    #
+
+			</code></pre></p></li>
+			<p><pre><code data-trim>
+    $ git diff
+    diff --git a/benchmarks.rb b/benchmarks.rb
+    index 3cb747f..da65585 100644
+    --- a/benchmarks.rb
+    +++ b/benchmarks.rb
+    @@ -36,6 +36,10 @@ def main
+               @commit.parents[0].parents[0].parents[0]
+             end
+
+    +        run_code(x, 'commits 1') do
+    +          git.commits.size
+    +        end
+    +
+             run_code(x, 'commits 2') do
+               log = git.commits('master', 15)
+               log.size
+			</code></pre></p></li>
+                </section>
+
+		<!-- code -->
+                <section>
+                    <h2>Viendo los cambios (staging o cacheados)</h2>
+			<p></p>
+			<p><pre><code data-trim>
+    $ git diff --cached
+    diff --git a/README b/README
+    new file mode 100644
+    index 0000000..03902a1
+    --- /dev/null
+    +++ b/README2
+    @@ -0,0 +1,5 @@
+    +grit
+    + by Tom Preston-Werner, Chris Wanstrath
+    + http://github.com/mojombo/grit
+    +
+    +Grit is a Ruby library for extracting information from a Git repository     
+			</code></pre></p></li>
+                </section>
+
+		<!-- code -->
+                <section>
+                    <h2>Commiteando los cambios</h2>
+			<p></p>
+			<p><pre><code data-trim>
+    $ git commit
+
+    # Please enter the commit message for your changes. Lines starting
+    # with '#' will be ignored, and an empty message aborts the commit.
+    # On branch master
+    # Changes to be committed:
+    #   (use "git reset HEAD <file>..." to unstage)
+    #
+    #       new file:   README
+    #       modified:   benchmarks.rb
+    ~
+    ~
+    ~
+    ".git/COMMIT_EDITMSG" 10L, 283C
+			</code></pre></p></li>
+                </section>
+
+		<!-- code -->
+                <section>
+                    <h2>Borrando</h2>
+			<p></p>
+			<p><pre><code data-trim>
+    $ git rm grit.gemspec
+    rm 'grit.gemspec'
+    $ git status
+    # On branch master
+    #
+    # Changes to be committed:
+    #   (use "git reset HEAD <file>..." to unstage)
+    #
+    #       deleted:    grit.gemspec
+    #
+			</code></pre></p></li>
+                </section>
+
+		<!-- code -->
+                <section>
+                    <h2>Renombrando o moviendo</h2>
+			<p><pre><code data-trim>
+    $ git mv README.txt README
+    $ git status
+    # On branch master
+    # Your branch is ahead of 'origin/master' by 1 commit.
+    #
+    # Changes to be committed:
+    #   (use "git reset HEAD <file>..." to unstage)
+    #
+    #       renamed:    README.txt -> README
+    #
+			</code></pre></p></li>
+
+<p>git es suficientemente inteligente para detectarlo si no se lo informamos</p>
+			<p><pre><code data-trim>
+
+    $ mv README.txt README
+    $ git rm README.txt
+    $ git add README
+			</code></pre></p></li>
+                </section>
+
+		<!-- code -->
+                <section>
+                    <h2>Deshaciendo último commit: commit --amend</h2>
+			<p></p>
+			<p><pre><code data-trim>
+    $ git commit -m 'initial commit'
+    $ git add forgotten_file
+    $ git commit --amend
+			</code></pre></p></li>
+                </section>
+
+		<!-- code -->
+                <section>
+                    <h2>Deshaciendo cambios: reset</h2>
+			<p>supongamos este caso ... </p>
+			<p><pre><code data-trim>
+    $ git add .
+    $ git status
+    # On branch master
+    # Changes to be committed:
+    #   (use "git reset HEAD <file>..." to unstage)
+    #
+    #       modified:   README.txt
+    #       modified:   benchmarks.rb
+    #
+			</code></pre></p></li>
+			<p> ... y queremos volver para atrás y no commitear benchmarks.rb</p>
+			<p><pre><code data-trim>
+    $ git reset HEAD benchmarks.rb
+    benchmarks.rb: locally modified
+
+    $ git status
+    # On branch master
+    # Changes to be committed:
+    #   (use "git reset HEAD <file>..." to unstage)
+    #
+    #       modified:   README.txt
+    #
+    # Changed but not updated:
+    #   (use "git add <file>..." to update what will be committed)
+    #   (use "git checkout -- <file>..." to discard changes in working directory)
+    #
+    #       modified:   benchmarks.rb
+    #
+			</code></pre></p></li>
+                </section>
+
+		<!-- code -->
+                <section>
+                    <h2>Revisando la historia</h2>
+			<h3>git log</h3>
+			<p></p>
+			<p><pre><code data-trim>
+    $ git log
+    commit ca82a6dff817ec66f44342007202690a93763949
+    Author: Scott Chacon <schacon@gee-mail.com>
+    Date:   Mon Mar 17 21:52:11 2008 -0700
+
+        changed the version number
+
+    commit 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7
+    Author: Scott Chacon <schacon@gee-mail.com>
+    Date:   Sat Mar 15 16:40:33 2008 -0700
+
+        removed unnecessary test code
+
+    commit a11bef06a3f659402fe7563abf99ad00de2209e6
+    Author: Scott Chacon <schacon@gee-mail.com>
+    Date:   Sat Mar 15 10:31:28 2008 -0700
+
+        first commit
+			</code></pre></p></li>
+			<p>otras alternativas de formateo del output:</p>
+			<p><pre><code data-trim>
+    $ git log --stat
+    
+    $ git log -p -2
+			</code></pre></p>
+
+                </section>
+
+		<!-- code -->
+                <section>
+                    <h2>Revisando la historia</h2>
+			<p>..visualmente ;-)</p>
+			<p><img src="img/smartgit.png" width="90%" /></p>
+                </section>
+
+
+		<!-- code -->
+                <section>
+                    <h2>Salvando el trabajo en progreso</h2>
+			<h3>usando el stash</h3>
+
+			<p></p>
+			<p><pre><code data-trim>
+$ git stash list
+			</code></pre></p>
+
+			<p></p>
+			<p><pre><code data-trim>
+$ git stash save
+			</code></pre></p>
+
+			<p></p>
+			<p><pre><code data-trim>
+$ git stash apply
+			</code></pre></p>
+                </section>
+
+
+
 
             </div>
         </div>
