@@ -69,7 +69,7 @@
                     <h1>Contenido</h1>
                     <ul>
                         <li>Intro</li>
-                        <li>Basics</li>
+                        <li>Operaciones básicas</li>
                         <li>Branching</li>
                         <li>Workflows</li>
                         <li>References</li>
@@ -175,7 +175,7 @@
     `-- refs
         |-- heads
         `-- tags
-			</code></pre></p></li>
+			</code></pre></p>
                 </section>
 
 		<!-- -->
@@ -186,7 +186,7 @@
     $ git status
     # On branch master
     nothing to commit (working directory clean)
-			</code></pre></p></li>
+			</code></pre></p>
                 </section>
 
 		<!-- code -->
@@ -203,7 +203,7 @@
     #   README
     nothing added to commit but untracked files present (use "git add" to track)
 
-			</code></pre></p></li>
+			</code></pre></p>
                 </section>
 
 		<!-- code -->
@@ -220,7 +220,7 @@
     #
     #   new file:   README
     #
-			</code></pre></p></li>
+			</code></pre></p>
                 </section>
 
 		<!-- code -->
@@ -250,7 +250,7 @@
     #   new file:   README
     #   modified:   benchmarks.rb
     # 
-			</code></pre></p></li>
+			</code></pre></p>
                 </section>
 
 		<!-- code -->
@@ -264,7 +264,7 @@
     *.classpath
     *.project
     *bin/
-			</code></pre></p></li>
+			</code></pre></p>
 			<p><pre><code data-trim>
     # a comment - this is ignored
     *.a       # no .a files
@@ -272,7 +272,7 @@
     /TODO     # only ignore the root TODO file, not subdir/TODO
     build/    # ignore all files in the build/ directory
     doc/*.txt # ignore doc/notes.txt, but not doc/server/arch.txt
-			</code></pre></p></li>
+			</code></pre></p>
                 </section>
 
 		<!-- code -->
@@ -293,7 +293,7 @@
     #   modified:   benchmarks.rb
     #
 
-			</code></pre></p></li>
+			</code></pre></p>
 			<p><pre><code data-trim>
     $ git diff
     diff --git a/benchmarks.rb b/benchmarks.rb
@@ -311,7 +311,7 @@
              run_code(x, 'commits 2') do
                log = git.commits('master', 15)
                log.size
-			</code></pre></p></li>
+			</code></pre></p>
                 </section>
 
 		<!-- code -->
@@ -331,7 +331,7 @@
     + http://github.com/mojombo/grit
     +
     +Grit is a Ruby library for extracting information from a Git repository     
-			</code></pre></p></li>
+			</code></pre></p>
                 </section>
 
 		<!-- code -->
@@ -353,7 +353,7 @@
     ~
     ~
     ".git/COMMIT_EDITMSG" 10L, 283C
-			</code></pre></p></li>
+			</code></pre></p>
                 </section>
 
 		<!-- code -->
@@ -371,7 +371,7 @@
     #
     #       deleted:    grit.gemspec
     #
-			</code></pre></p></li>
+			</code></pre></p>
                 </section>
 
 		<!-- code -->
@@ -388,7 +388,7 @@
     #
     #       renamed:    README.txt -> README
     #
-			</code></pre></p></li>
+			</code></pre></p>
 
 <p>git es suficientemente inteligente para detectarlo si no se lo informamos</p>
 			<p><pre><code data-trim>
@@ -396,7 +396,7 @@
     $ mv README.txt README
     $ git rm README.txt
     $ git add README
-			</code></pre></p></li>
+			</code></pre></p>
                 </section>
 
 		<!-- code -->
@@ -407,7 +407,7 @@
     $ git commit -m 'initial commit'
     $ git add forgotten_file
     $ git commit --amend
-			</code></pre></p></li>
+			</code></pre></p>
                 </section>
 
 		<!-- code -->
@@ -424,7 +424,7 @@
     #       modified:   README.txt
     #       modified:   benchmarks.rb
     #
-			</code></pre></p></li>
+			</code></pre></p>
 			<p> ... y queremos volver para atrás y no commitear benchmarks.rb</p>
 			<p><pre><code data-trim>
     $ git reset HEAD benchmarks.rb
@@ -443,7 +443,7 @@
     #
     #       modified:   benchmarks.rb
     #
-			</code></pre></p></li>
+			</code></pre></p>
                 </section>
 
 		<!-- code -->
@@ -470,7 +470,7 @@
     Date:   Sat Mar 15 10:31:28 2008 -0700
 
         first commit
-			</code></pre></p></li>
+			</code></pre></p>
 			<p>otras alternativas de formateo del output:</p>
 			<p><pre><code data-trim>
     $ git log --stat
@@ -509,7 +509,359 @@ $ git stash apply
 			</code></pre></p>
                 </section>
 
+<!-- BRANCHING -->
 
+                <section>
+                    <h2>Qué es un rama (branch) en Git?</h2>
+                        <li class="fragment roll-in">Un branch en Git es un puntero ágil y móvil a un commit.</li>
+                        <li class="fragment roll-in">Al crear un repositorio, Git te provee un branch que "apunta" al último commit. Por default tiene por nombre master.</li>
+                        <li class="fragment roll-in">Puedes crear tus propios branches/ramas, a partir de cualquier commit.</li>
+                        <li class="fragment roll-in">A medida que realices nuevos commits, ese puntero se irá moviendo hacia adelante automáticamente.</li>
+                </section>
+
+
+                <section>
+                    <h2>Branching básico</h2>
+			<p>Supongamos el siguiente escenario:</p>
+                        <li class="fragment roll-in">estamos trabajando en un proyecto que ya posee algunos commits</li>
+                        <li class="fragment roll-in">arrancamos a desarrollar una nueva story creando para ello una nueva rama de nombre "iss53"</li>
+                        <li class="fragment roll-in">llega un requerimiento de resolver un bug de alta prioridad</li>
+                        <li class="fragment roll-in">necesitamos abandonar momentaneamente la story para proveer un hotfix</li>
+                        <li class="fragment roll-in">creamos un branch "hotfix", y una vez probado nuestro fix, se debe mergear e instalarse en producción</li>
+                        <li class="fragment roll-in">volver a trabajar en la story</li>
+                </section>
+
+		<!-- -->
+                <section>
+
+                <section>
+                      <h2>Historia del proyecto actual</h2>
+                      <img title="" src="img/branching1.png">
+                </section>
+                <section>
+                      <h2>Nueva rama iss53</h2>
+                      <p><pre><code data-trim>
+    $ git checkout -b iss53
+    Switched to a new branch "iss53"
+                      </code></pre></p>
+                      <img title="" src="img/branching2.png">
+                </section>
+                <section>
+                      <h2>Commiteamos en la nueva rama iss53</h2>
+                      <p><pre><code data-trim>
+    $ vim index.html
+    $ git commit -a -m 'added a new footer [issue 53]'
+                      </code></pre></p>
+                      <img title="" src="img/branching3.png">
+                      <p>observar como se mueve hacia adelante la referencia</p>
+                </section>
+                <section>
+                    <h2>Volviendo a master para trabajar en el fix</h2>
+			<p></p>
+			<p><pre><code data-trim>
+    $ git checkout master
+    Switched to branch "master"
+                         </code></pre></p>
+                         <p>Git resetea el directorio de trabajo para que sea el mismo que corresponde al último commit en master.</p>
+                </section>
+                <section>
+                    <h2>Creamos el branch hotfix, y armamos el fix</h2>
+			<p></p>
+			<p><pre><code data-trim>
+$ git checkout -b 'hotfix'
+Switched to a new branch "hotfix"
+    
+    
+$ vim index.html
+$ git commit -a -m 'fixed the broken email address'
+[hotfix]: created 3a0874c: "fixed the broken email address"
+1 files changed, 0 insertions(+), 1 deletions(-)
+                        </code></pre></p>
+                        <img title="" src="img/branching4.png">
+                </section>
+                <section>
+                    <h2>Listos para mergear el hotfix en master</h2>
+			<p></p>
+			<p><pre><code data-trim>
+$ git checkout master
+$ git merge hotfix
+Updating f42c576..3a0874c
+Fast forward
+README |    1 -
+1 files changed, 0 insertions(+), 1 deletions(-)
+                        </code></pre></p>
+                        <img title="" src="img/branching5.png">
+                        <p>listo para deployar en producción y volver a la story!</p>
+                </section>
+		<!-- code -->
+                <section>
+                    <h2>Fast forwarding branches</h2>
+			<p>Una rama que acaba de ser actualizada con commits mas recientes, es susceptible de hacerle fast-forwarding cuando sus commits son ancestros de los nuevos commits.
+</p>
+                </section>
+		<!-- code -->
+                <section>
+                    <h2>Vuelvo a la story</h2>
+			<p>borra branch del hotfix</p>
+			<p><pre><code data-trim>
+$ git branch -d hotfix
+Deleted branch hotfix (3a0874c).
+                        </code></pre></p>
+			<p>switchea al branch iss53</p>
+			<p><pre><code data-trim>
+$ git checkout iss53
+Switched to branch "iss53"
+$ vim index.html
+$ git commit -a -m 'finished the new footer [issue 53]'
+[iss53]: created ad82d7a: "finished the new footer [issue 53]"
+1 files changed, 1 insertions(+), 0 deletions(-)
+                </code></pre></p>
+                        <img title="local" src="img/branching6.png">
+                </section>
+
+                <section>
+                    <h2>Mergeando</h2>
+			<p>Cómo puedo llevar la nueva funcionalidad al master?</p>
+			<p><pre><code data-trim>
+$ git checkout master
+$ git merge iss53
+Merge made by recursive.
+ README |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+                        </code></pre></p>
+                        <img title="local" src="img/merging1.png">
+                </section>
+
+                <section>
+                    <h2>Mergeando: en caso de conflicto</h2>
+			<p>Cuando los algoritmos de mergeo de Git no pueden resolver automáticamente avisan</p>
+			<p><pre><code data-trim>
+$ git merge iss53
+Auto-merging index.html
+CONFLICT (content): Merge conflict in index.html
+Automatic merge failed; fix conflicts and then commit the result.
+
+$ git status
+index.html: needs merge
+# On branch master
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#   unmerged:   index.html
+#
+
+<<<<<<< HEAD
+<div id="footer">contact : email.support@github.com</div>
+=======
+<div id="footer">
+  please contact us at support@github.com
+</div>
+>>>>>>> iss53
+
+</code></pre></p>
+                </section>
+
+                <section>
+                    <h2>Mergeando: en caso de conflicto</h2>
+			<p>Se debe resolver manualmente o empleando alguna herramienta para merge (mergetool)</p>
+			<p><pre><code data-trim>
+$ vim index.html
+
+$ git add index.html
+
+$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#   modified:   index.html
+#
+                        </code></pre></p>
+                </section>
+
+                <section>
+                    <h2>Obteniendo info de los branches</h2>
+			<p>Algunos comandos útiles</p>
+			<p><pre><code data-trim>
+$ git branch -v
+iss53   93b412c fix javascript issue
+* master  7a98805 Merge branch 'iss53'
+testing 782fd34 add scott to the author list in the readmes
+                        </code></pre></p>
+                        <p>para obtener los branches locales</p>
+			<p><pre><code data-trim>
+$ git branch --merged
+iss53
+* master
+                        </code></pre></p>
+                        <p>informa los branches que están mergeados en branch actual</p>
+			<p><pre><code data-trim>
+$ git branch --contains e5c2d6ec
+* master
+                        </code></pre></p>
+                        <p>imprime los branches que contienen el commit e5c2d6ec...</p>
+
+
+
+                </section>
+
+                <section>
+                    <h2>Branches: estrategias mas usadas</h2>
+			<p>Branches de larga permanencia</p>
+                        <img title="local" src="img/long-running-branches.png">
+                        <p>Topic branches por el contrario tiene muy corta vida</p>
+                </section>
+
+                <section>
+                    <h2>Rebasing vs Merge</h2>
+			<p>
+                        <img title="local" src="img/merging2.png">
+                        </p>
+			<p><pre><code data-trim>
+$ git checkout experiment
+$ git rebase master
+First, rewinding head to replay your work on top of it...
+Applying: added staged command
+                        </code></pre></p>
+                        <img title="local" src="img/rebasing1.png">
+                        <p>toma el commit C3 y lo reaplica en el branch generando un nuevo commit C3'</p>
+                </section>
+                </section>
+
+                <section>
+		<!-- code -->
+                <section>
+                    <h1>Respositorios remotos</h1>
+			<p>Los repositorios remotos permiten compartir el código, básicamente son copias de ntra. base de objetos, para _sincronizarlos_ usamos: </p>
+                        <p><strong>push</strong>, <strong>fetch</strong> (<strong>pull</strong>)</p>
+                </section>
+                <section>
+                    <h2>Mostrando repos remotos (remote -v)</h2>
+			<p><pre><code data-trim>
+$ git remote -v
+origin  git://github.com/schacon/ticgit.git
+                         </code></pre></p>
+                </section>
+                <section>
+                    <h2>Agregando repo remoto (remote add)</h2>
+			<p></p>
+			<p><pre><code data-trim>
+$ git remote
+origin
+$ git remote add pb git://github.com/paulboone/ticgit.git
+$ git remote -v
+origin  git://github.com/schacon/ticgit.git
+pb  git://github.com/paulboone/ticgit.git
+                        </code></pre></p>
+                </section>
+
+                <section>
+                    <h2>Sincronizando copia local del repo remoto (fetch) </h2>
+			<p></p>
+			<p><pre><code data-trim>
+$ git fetch pb
+remote: Counting objects: 58, done.
+remote: Compressing objects: 100% (41/41), done.
+remote: Total 44 (delta 24), reused 1 (delta 0)
+Unpacking objects: 100% (44/44), done.
+From git://github.com/paulboone/ticgit
+ * [new branch]      master     -> pb/master
+ * [new branch]      ticgit     -> pb/ticgit
+                        </code></pre></p>
+                </section>
+                <section>
+                    <h2>Pusheando/subiendo cambios al repo remoto (push)</h2>
+			<p></p>
+			<p><pre><code data-trim>
+$ git push origin master
+                        </code></pre></p>
+                </section>
+
+                <section>
+                    <h2>Info sobre repo remoto (remote show)</h2>
+			<p></p>
+			<p><pre><code data-trim>
+$ git remote show origin
+* remote origin
+  URL: git://github.com/schacon/ticgit.git
+  Remote branch merged with 'git pull' while on branch master
+    master
+  Tracked remote branches
+    master
+    ticgit
+                        </code></pre></p>
+                </section>
+
+		<!-- code -->
+                <section>
+                    <h2>Repositorios Remotos</h2>
+                    <h3>Ejemplos de uso</h3>
+                </section>
+
+		<!-- code -->
+                <section>
+                    <h2>Ejemplos de uso</h2>
+
+                    <div style="position: relative; margin: 0 auto; width: 879px; height: 535px;">
+                        <div class="fragment current-visible" style="position: absolute; z-index: 1;">
+                            <img title="delta" src="img/remote1.png">
+                        </div>
+                        <div class="fragment current-visible" style="position: absolute; z-index: 1;">
+                            <img title="delta" src="img/remote2.png">
+                        </div>
+                        <div class="fragment current-visible" style="position: absolute; z-index: 1;">
+                            <img title="dag" src="img/remote3.png">
+                        </div>
+                        <div class="fragment current-visible" style="position: absolute; z-index: 1;">
+                            <img title="dag" src="img/remote4.png">
+                        </div>
+                        <div class="fragment current-visible" style="position: absolute; z-index: 1;">
+                            <img title="dag" src="img/remote5.png">
+                        </div>
+                        <div class="fragment current-visible" style="position: absolute; z-index: 1;">
+                            <img title="dag" src="img/remote6.png">
+                        </div>
+                        <div class="fragment current-visible" style="position: absolute; z-index: 1;">
+                            <img title="dag" src="img/remote7.png">
+                        </div>
+                        <div class="fragment current-visible" style="position: absolute; z-index: 1;">
+                            <img title="dag" src="img/remote8.png">
+                        </div>
+                        <div class="fragment current-visible" style="position: absolute; z-index: 1;">
+                            <img title="dag" src="img/remote9.png">
+                        </div>
+                        <div class="fragment current-visible" style="position: absolute; z-index: 1;">
+                            <img title="dag" src="img/remote10.png">
+                        </div>
+                        <div class="fragment current-visible" style="position: absolute; z-index: 1;">
+                            <img title="dag" src="img/remote11.png">
+                        </div>
+                        <div class="fragment current-visible" style="position: absolute; z-index: 1;">
+                            <img title="dag" src="img/remote12.png">
+                        </div>
+                        <div class="fragment current-visible" style="position: absolute; z-index: 1;">
+                            <img title="dag" src="img/remote13.png">
+                        </div>
+                        <div class="fragment current-visible" style="position: absolute; z-index: 1;">
+                            <img title="dag" src="img/remote14.png">
+                        </div>
+                        <div class="fragment current-visible" style="position: absolute; z-index: 1;">
+                            <img title="dag" src="img/remote15.png">
+                        </div>
+                    </div>
+
+
+
+
+                </section>
+
+                </section>
+
+                <section>
+...
+
+                </section>
 
 
             </div>
