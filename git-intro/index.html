@@ -7,7 +7,7 @@
         <title>Introducción a GIT</title>
 
         <meta name="description" content="Introducción a Git">
-        <meta name="author" content="Patricio Keilty">
+        <meta name="author" content="Damián Valdés/Patricio Keilty">
 
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -59,9 +59,9 @@
                             <img alt="Licencia Creative Commons" style="border-width:0" src="img/cc-by-nc-sa-88x31.png" />
                         </a>
                     </p>
-                    <p>
-                        <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">Introducción a GIT</span> por <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Patricio Keilty</span> se encuentra bajo una Licencia <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Atribución-NoComercial-CompartirDerivadasIgual 3.0 Unported</a>.
-                    </p>
+                    <!--p>
+                        <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">Introducción a GIT</span> por <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Damián Ignacio Valdés/Patricio Keilty</span> se encuentra bajo una Licencia <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Atribución-NoComercial-CompartirDerivadasIgual 3.0 Unported</a>.
+                    </p-->
                 </section>
 
                 <!-- Slide #2 -->
@@ -70,9 +70,10 @@
                     <ul>
                         <li>Intro</li>
                         <li>Operaciones básicas</li>
-                        <li>Branching</li>
-                        <li>Workflows</li>
+                        <li>Branching y merging</li>
+                        <li>Repos remotos</li>
                         <li>References</li>
+                        <li>Ejemplos prácticos de uso</li>
                     </ul>
                 </section>
 
@@ -80,12 +81,13 @@
                 <section>
                     <h1>Qué es git?</h1>
                     <ul>
-                        <li>es un sistema de _código abierto_ de control de versiones</li>
-                        <li>diseñado para ser: veloz, simple, distribuido, soporte desarrollo no lineal (muchas ramas en paralelo),maneje grandes proyectos de manera eficiente (tiempo y espacio)</li>
-                        <li>se desarrolló como control de versiones para el kernel del SO Linux en el 2005</li>
-                        <li>su autor es Linus Torvalds (autor tb del kernel linux)</li>
+                        <li class="fragment roll-in">es un sistema de <strong>código abierto</strong> de control de versiones</li>
+                        <li class="fragment roll-in">diseñado para ser: veloz, simple, distribuido, soporte desarrollo no lineal (muchas ramas en paralelo),maneje grandes proyectos de manera eficiente (tiempo y espacio)</li>
+                        <li class="fragment roll-in">se desarrolló como control de versiones para el kernel del SO Linux en el 2005</li>
+                        <li class="fragment roll-in">su autor es Linus Torvalds (autor tb del kernel linux)</li>
                     </ul>
-                    <p>segunda acepción: un rastreador estúpido/simple de info - <a href="http://translate.google.com/#auto|es|you%20are%20a%20git">stupid content tracker</a></p>
+                    <p  class="fragment roll-in">! segunda acepción: un rastreador estúpido/simple de info - <a href="http://translate.google.com/#auto|es|you%20are%20a%20git">stupid content tracker</a></p>
+
                 </section>
 
                 <!-- Slide #5 -->
@@ -100,23 +102,22 @@
 
                 <!-- Slide #6 -->
                 <section>
-                    <h1>Taxonomías  SCM</h1>
-                    <h2><span class="fragment highlight-red" data-fragment-index="1">Deltas</span><span class="fragment" data-fragment-index="2"> vs Snapshots</span><h2>
-                    <div style="position: relative; margin: 0 auto; width: 490px; height: 223px;">
-                        <div class="fragment current-visible" data-fragment-index="1" style="position: absolute; z-index: 0;">
-                            <img title="delta" src="img/diff-storage-5.png">
+                    <h2>Taxonomías  SCM</h2>
+                    <h3><span >Deltas</span><span class="fragment" data-fragment-index="2"> vs Snapshots</span><h3>
+                    <div style="margin: 0 auto; width: 500px; height: 250px;">
+                        <div style="position: absolute; z-index: 0;">
+                            <img title="deltas" src="img/diff-storage-5.png">
                         </div>
                         <div class="fragment current-visible" data-fragment-index="2" style="position: absolute; z-index: 1;">
-                            <img title="dag" src="img/snapshot-storage-5.png">
+                            <img title="snapshots" src="img/snapshot-storage-5.png">
                         </div>
                     </div>
                 </section>
 
                 <!-- Slide #7 -->
                 <section>
-
-                    <h1>Taxonomías  SCM</h1>
-                    <h2>Clasificación según arquitectura</h2>
+                    <h2>Taxonomías  SCM</h2>
+                    <h3>Clasificación según arquitectura</h3>
                         <li class="fragment grow">local: restringido a la máquina de trabajo</li>
                         <li class="fragment grow">centralizado: cliente-servidor, única fuente autorizada</li>
                         <li class="fragment grow">distribuido: red de pares, hay múltiples copias in-sync</li>
@@ -124,8 +125,8 @@
 
                 <!-- Slide #8 -->
                 <section>
-                    <h1>Taxonomías  SCM</h1>
-                    <h2>Matriz de clasificación</h2>
+                    <h2>Taxonomías  SCM</h2>
+                    <h3>Matriz de clasificación</h3>
                     <img title="tax" src="img/taxonomy-matrix.png">
                 </section>
 
@@ -138,13 +139,15 @@
                         <li class="fragment highlight-blue">files 3 estados: commiteado, modificado y en staging (listo para commitear)</li>
                 </section>
 
-                <!-- Slide #10 -->
                 <section>
                     <h2>Estados de un file</h2>
                     <img title="local" src="img/local-states.png">
                 </section>
 
-		<!-- -->
+<!-- Comandos básicos -->
+                <section>
+                    <h1>Comandos básicos</h1>
+                </section>
                 <section>
                     <h2>Conectándose a un repo</h2>
 			<ul>
@@ -198,7 +201,7 @@
     $ git status
     # On branch master
     # Untracked files:
-    #   (use "git add <file>..." to include in what will be committed)
+    #   (use "git add &lt;file&gt;..." to include in what will be committed)
     #
     #   README
     nothing added to commit but untracked files present (use "git add" to track)
@@ -216,7 +219,7 @@
     $ git status
     # On branch master
     # Changes to be committed:
-    #   (use "git reset HEAD <file>..." to unstage)
+    #   (use "git reset HEAD &lt;file&gt;..." to unstage)
     #
     #   new file:   README
     #
@@ -231,12 +234,12 @@
     $ git status
     # On branch master
     # Changes to be committed:
-    #   (use "git reset HEAD <file>..." to unstage)
+    #   (use "git reset HEAD &lt;file&gt;..." to unstage)
     # 
     #   new file:   README
     #
     # Changed but not updated:
-    #   (use "git add <file>..." to update what will be committed)
+    #   (use "git add &lt;file&gt;..." to update what will be committed)
     # 
     #   modified:   benchmarks.rb
     # 
@@ -245,7 +248,7 @@
     $ git status
     # On branch master
     # Changes to be committed:
-    #   (use "git reset HEAD <file>..." to unstage)
+    #   (use "git reset HEAD &lt;file&gt;..." to unstage)
     # 
     #   new file:   README
     #   modified:   benchmarks.rb
@@ -283,12 +286,12 @@
     $ git status
     # On branch master
     # Changes to be committed:
-    #   (use "git reset HEAD <file>..." to unstage)
+    #   (use "git reset HEAD &lt;file&gt;..." to unstage)
     #
     #   new file:   README
     #
     # Changed but not updated:
-    #   (use "git add <file>..." to update what will be committed)
+    #   (use "git add &lt;file&gt;..." to update what will be committed)
     #
     #   modified:   benchmarks.rb
     #
@@ -345,7 +348,7 @@
     # with '#' will be ignored, and an empty message aborts the commit.
     # On branch master
     # Changes to be committed:
-    #   (use "git reset HEAD <file>..." to unstage)
+    #   (use "git reset HEAD &lt;file&gt;..." to unstage)
     #
     #       new file:   README
     #       modified:   benchmarks.rb
@@ -367,7 +370,7 @@
     # On branch master
     #
     # Changes to be committed:
-    #   (use "git reset HEAD <file>..." to unstage)
+    #   (use "git reset HEAD &lt;file&gt;..." to unstage)
     #
     #       deleted:    grit.gemspec
     #
@@ -384,7 +387,7 @@
     # Your branch is ahead of 'origin/master' by 1 commit.
     #
     # Changes to be committed:
-    #   (use "git reset HEAD <file>..." to unstage)
+    #   (use "git reset HEAD &lt;file&gt;..." to unstage)
     #
     #       renamed:    README.txt -> README
     #
@@ -419,7 +422,7 @@
     $ git status
     # On branch master
     # Changes to be committed:
-    #   (use "git reset HEAD <file>..." to unstage)
+    #   (use "git reset HEAD &lt;file&gt;..." to unstage)
     #
     #       modified:   README.txt
     #       modified:   benchmarks.rb
@@ -433,13 +436,13 @@
     $ git status
     # On branch master
     # Changes to be committed:
-    #   (use "git reset HEAD <file>..." to unstage)
+    #   (use "git reset HEAD &lt;file&gt;..." to unstage)
     #
     #       modified:   README.txt
     #
     # Changed but not updated:
-    #   (use "git add <file>..." to update what will be committed)
-    #   (use "git checkout -- <file>..." to discard changes in working directory)
+    #   (use "git add &lt;file&gt;..." to update what will be committed)
+    #   (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
     #
     #       modified:   benchmarks.rb
     #
@@ -447,6 +450,7 @@
                 </section>
 
 		<!-- code -->
+                <section>
                 <section>
                     <h2>Revisando la historia</h2>
 			<h3>git log</h3>
@@ -471,47 +475,152 @@
 
         first commit
 			</code></pre></p>
-			<p>otras alternativas de formateo del output:</p>
+                </section>
+                <section>
+			<h3>otras alternativas de formateo del output:</h3>
 			<p><pre><code data-trim>
-    $ git log --stat
-    
-    $ git log -p -2
-			</code></pre></p>
+$ git log --stat
+commit ca82a6dff817ec66f44342007202690a93763949
+Author: Scott Chacon <schacon@gee-mail.com>
+Date:   Mon Mar 17 21:52:11 2008 -0700
 
+    changed the version number
+
+ Rakefile |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7
+Author: Scott Chacon <schacon@gee-mail.com>
+Date:   Sat Mar 15 16:40:33 2008 -0700
+
+    removed unnecessary test code
+
+ lib/simplegit.rb |    5 -----
+ 1 file changed, 5 deletions(-)
+
+commit a11bef06a3f659402fe7563abf99ad00de2209e6
+Author: Scott Chacon <schacon@gee-mail.com>
+Date:   Sat Mar 15 10:31:28 2008 -0700
+
+    first commit
+
+ README           |    6 ++++++
+ Rakefile         |   23 +++++++++++++++++++++++
+ lib/simplegit.rb |   25 +++++++++++++++++++++++++
+ 3 files changed, 54 insertions(+)
+			</code></pre></p>
+<p>muestra los files y estadísticas de cambios</p>
+                </section>
+                <section>
+                        <h3>otras alternativas de formateo del output:</h3>
+			<p><pre><code data-trim>
+$ git log -p -2
+commit ca82a6dff817ec66f44342007202690a93763949
+Author: Scott Chacon <schacon@gee-mail.com>
+Date:   Mon Mar 17 21:52:11 2008 -0700
+
+    changed the version number
+
+diff --git a/Rakefile b/Rakefile
+index a874b73..8f94139 100644
+--- a/Rakefile
++++ b/Rakefile
+@@ -5,5 +5,5 @@ require 'rake/gempackagetask'
+ spec = Gem::Specification.new do |s|
+     s.name      =   "simplegit"
+-    s.version   =   "0.1.0"
++    s.version   =   "0.1.1"
+     s.author    =   "Scott Chacon"
+     s.email     =   "schacon@gee-mail.com
+
+commit 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7
+Author: Scott Chacon <schacon@gee-mail.com>
+Date:   Sat Mar 15 16:40:33 2008 -0700
+
+    removed unnecessary test code
+
+diff --git a/lib/simplegit.rb b/lib/simplegit.rb
+index a0a60ae..47c6340 100644
+--- a/lib/simplegit.rb
++++ b/lib/simplegit.rb
+@@ -18,8 +18,3 @@ class SimpleGit
+     end
+
+ end
+-
+-if $0 == __FILE__
+-  git = SimpleGit.new
+-  puts git.show
+-end
+\ No newline at end of file
+
+			</code></pre></p>
+<p>muestra las diffs de cada commit, para los últimos 2!</p>
                 </section>
 
 		<!-- code -->
                 <section>
-                    <h2>Revisando la historia</h2>
+                    <h3>Revisando la historia</h3>
 			<p>..visualmente ;-)</p>
 			<p><img src="img/smartgit.png" width="90%" /></p>
+                </section>
                 </section>
 
 
 		<!-- code -->
+                <section>
                 <section>
                     <h2>Salvando el trabajo en progreso</h2>
 			<h3>usando el stash</h3>
 
-			<p></p>
+			<p><pre><code data-trim>
+$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+#      modified:   index.html
+#
+# Changes not staged for commit:
+#   (use "git add &lt;file&gt;..." to update what will be committed)
+#
+#      modified:   lib/simplegit.rb
+#
+
+$ git stash save
+Saved working directory and index state \
+  "WIP on master: 049d078 added the index file"
+HEAD is now at 049d078 added the index file
+(To restore them type "git stash apply")
+			</code></pre></p>
+                </section>
+                <section>
+			<h3>usando el stash</h3>
 			<p><pre><code data-trim>
 $ git stash list
-			</code></pre></p>
-
-			<p></p>
-			<p><pre><code data-trim>
-$ git stash save
+stash@{0}: WIP on master: 049d078 added the index file
+stash@{1}: WIP on master: c264051 Revert "added file_size"
+stash@{2}: WIP on master: 21d80a5 added number to log
 			</code></pre></p>
 
 			<p></p>
 			<p><pre><code data-trim>
 $ git stash apply
+# On branch master
+# Changes not staged for commit:
+#   (use "git add &lt;file&gt;..." to update what will be committed)
+#
+#      modified:   index.html
+#      modified:   lib/simplegit.rb
+#
 			</code></pre></p>
+                </section>
                 </section>
 
 <!-- BRANCHING -->
-
                 <section>
+                <section>
+                    <h1>Branching</h1>
                     <h2>Qué es un rama (branch) en Git?</h2>
                         <li class="fragment roll-in">Un branch en Git es un puntero ágil y móvil a un commit.</li>
                         <li class="fragment roll-in">Al crear un repositorio, Git te provee un branch que "apunta" al último commit. Por default tiene por nombre master.</li>
@@ -530,9 +639,6 @@ $ git stash apply
                         <li class="fragment roll-in">creamos un branch "hotfix", y una vez probado nuestro fix, se debe mergear e instalarse en producción</li>
                         <li class="fragment roll-in">volver a trabajar en la story</li>
                 </section>
-
-		<!-- -->
-                <section>
 
                 <section>
                       <h2>Historia del proyecto actual</h2>
@@ -645,8 +751,8 @@ $ git status
 index.html: needs merge
 # On branch master
 # Changed but not updated:
-#   (use "git add <file>..." to update what will be committed)
-#   (use "git checkout -- <file>..." to discard changes in working directory)
+#   (use "git add &lt;file&gt;..." to update what will be committed)
+#   (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
 #
 #   unmerged:   index.html
 #
@@ -673,7 +779,7 @@ $ git add index.html
 $ git status
 # On branch master
 # Changes to be committed:
-#   (use "git reset HEAD <file>..." to unstage)
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
 #
 #   modified:   index.html
 #
@@ -878,18 +984,18 @@ $ git remote show origin
 
 		<!-- -->
                 <section>
-                    <h1>Material Referencia</h1>
-                    <h2>Libros</h2>
+                    <h2>Material Referencia</h2>
+                    <h3>Libros</h3>
 <ul><li><a href="http://git-scm.com/book/">Pro Git (también disponible online free)</a></li></ul>
 <p><img src="img/progit.png" height="150px" />
 
-                    <h2>Websites</h2>
+                    <h3>Websites</h3>
 <ul>
 <li><a href="http://git-scm.com">http://git-scm.com</a></li>
 <li><a href="http://github.com">http://github.com</a></li>
 </ul>
 
-                    <h2>Videos</h2>
+                    <h3>Videos</h3>
 <ul>
 <li><a href="" >Charla de Linus Torvalds @ GTalk</a></li>
 <li><a href="http://github.com/schacon" >Scot Chacon - github.com/schacon</a></li>
