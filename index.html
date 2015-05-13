@@ -55,13 +55,12 @@
                     <h1>Introducción a GIT</h1>
                     <p><img title="Git logo" src="img/2color-lightbg.png"></p>
                     <p>
+			<small>Created by <a href="http://twitter.com/patokeilty">@patokeilty</a></small>
+			<p>
                         <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
                             <img alt="Licencia Creative Commons" style="border-width:0" src="img/cc-by-nc-sa-88x31.png" />
                         </a>
                     </p>
-                    <!--p>
-                        <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/InteractiveResource" property="dct:title" rel="dct:type">Introducción a GIT</span> por <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Damián Ignacio Valdés/Patricio Keilty</span> se encuentra bajo una Licencia <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Atribución-NoComercial-CompartirDerivadasIgual 3.0 Unported</a>.
-                    </p-->
                 </section>
 
                 <!-- Slide #2 -->
@@ -81,12 +80,12 @@
                 <section>
                     <h1>Qué es git?</h1>
                     <ul>
-                        <li class="fragment roll-in">es un sistema de <strong>código abierto</strong> de control de versiones</li>
-                        <li class="fragment roll-in">diseñado para ser: veloz, simple, distribuido, soporte desarrollo no lineal (muchas ramas en paralelo),maneje grandes proyectos de manera eficiente (tiempo y espacio)</li>
-                        <li class="fragment roll-in">se desarrolló como control de versiones para el kernel del SO Linux en el 2005</li>
+                        <li class="fragment roll-in">es un sistema de control de versiones de <strong>código abierto</strong> </li>
+                        <li class="fragment roll-in">diseñado para ser: veloz, simple, distribuido, que soporte desarrollo no lineal (muchas ramas en paralelo),maneje grandes proyectos de manera eficiente (tiempo y espacio)</li>
+                        <li class="fragment roll-in">se desarrolló como control de versiones para el kernel del SO Linux en el 2005 <img src="img/young-linus.gif" style="float: right;"></li>
                         <li class="fragment roll-in">su autor es Linus Torvalds (autor tb del kernel linux)</li>
+	                    <li  class="fragment roll-in">! segunda acepción: un rastreador estúpido/simple de info - <a href="http://translate.google.com/#auto|es|you%20are%20a%20git">stupid content tracker</a></li>
                     </ul>
-                    <p  class="fragment roll-in">! segunda acepción: un rastreador estúpido/simple de info - <a href="http://translate.google.com/#auto|es|you%20are%20a%20git">stupid content tracker</a></p>
 
                 </section>
 
@@ -94,6 +93,7 @@
                 <section>
                     <h1>Taxonomías  SCM</h1>
                     <h2>Tipo almacenamiento:</h2>
+<img src="img/lego-bricks.png" style="float: right;">
                     <ul>
                         <li>diffs/deltas</li>
                         <li>DAG/snapshots</li>
@@ -118,9 +118,12 @@
                 <section>
                     <h2>Taxonomías  SCM</h2>
                     <h3>Clasificación según arquitectura</h3>
-                        <li class="fragment grow">local: restringido a la máquina de trabajo</li>
-                        <li class="fragment grow">centralizado: cliente-servidor, única fuente autorizada</li>
-                        <li class="fragment grow">distribuido: red de pares, hay múltiples copias in-sync</li>
+
+<ul>
+                        <li class="fragment roll-in"><strong>local</strong>: restringido a la máquina de trabajo</li>
+                        <li class="fragment roll-in"><strong>centralizado</strong>: cliente-servidor, única fuente autorizada</li>
+                        <li class="fragment roll-in"><strong>distribuido</strong>: red de pares, hay múltiples copias in-sync</li>
+</ul>
                 </section>
 
                 <!-- Slide #8 -->
@@ -130,13 +133,27 @@
                     <img title="tax" src="img/taxonomy-matrix.png">
                 </section>
 
+                <section>
+                    <h2>Concepto principal : commit!</h2>
+<p>el <strong>commit</strong>: es una foto del codebase que tiene los sig. attributos:
+<ul>
+<img src="img/commit.jpg" style="float: right; width: 60%">
+                        <li class="fragment highlight-blue">commit ID</li>
+                        <li class="fragment highlight-blue">autor</li>
+                        <li class="fragment highlight-blue">fecha</li>
+                        <li class="fragment highlight-blue">comentario</li>
+			<li class="fragment highlight-blue">una historia (a través de sus padres)</li>
+</ul>
+                </section>
+
+
                 <!-- Slide #9 -->
                 <section>
                     <h2>Características</h2>
                         <li class="fragment highlight-blue">operaciones locales (copia local del repo, no se necesita estar conectado): checkouts, commits, branching, análisis historia</li>
                         <li class="fragment highlight-blue">integridad: cada objeto en la bbdd posee un hash (SHA1 - hex de 40 dígitos -criptográficamente seguro )</li>
                         <li class="fragment highlight-blue">estructura simple de almacenamiento: siempre se escriben datos, no se actualizan</li>
-                        <li class="fragment highlight-blue">files 3 estados: commiteado, modificado y en staging (listo para commitear)</li>
+                        <li class="fragment highlight-blue">files 3 estados: modificado, en staging (listo para commitear), commiteado</li>
                 </section>
 
                 <section>
@@ -162,22 +179,22 @@
                 <section>
                     <h2>.git directory</h2>
 			<p><pre><code data-trim>
-    $ tree .git
-    .git
-    |-- config
-    |-- description
-    |-- HEAD
-    |-- hooks
-    |   |-- commit-msg.sample
-    |-- index
-    |-- info
-    |   `-- exclude
-    |-- objects
-    |   |-- info
-    |   `-- pack
-    `-- refs
-        |-- heads
-        `-- tags
+$ tree .git
+.git
+|-- config
+|-- description
+|-- HEAD
+|-- hooks
+|   |-- commit-msg.sample
+|-- index
+|-- info
+|   `-- exclude
+|-- objects
+|   |-- info
+|   `-- pack
+`-- refs
+|-- heads
+`-- tags
 			</code></pre></p>
                 </section>
 
@@ -186,9 +203,9 @@
                     <h2>Chequeando estado</h2>
 			<p>nada que commitear</p>
 			<p><pre><code data-trim>
-    $ git status
-    # On branch master
-    nothing to commit (working directory clean)
+$ git status
+# On branch master
+nothing to commit (working directory clean)
 			</code></pre></p>
                 </section>
 
@@ -197,32 +214,33 @@
                     <h2>Chequeando estado</h2>
 			<p>tengo modificaciones</p>
 			<p><pre><code>
-    $ vim README
-    $ git status
-    # On branch master
-    # Untracked files:
-    #   (use "git add &lt;file&gt;..." to include in what will be committed)
-    #
-    #   README
-    nothing added to commit but untracked files present (use "git add" to track)
+$ vim README
+...
+$ git status
+# On branch master
+# Untracked files:
+#   (use "git add &lt;file&gt;..." to include in what will be committed)
+#
+#   README
+nothing added to commit but untracked files present (use "git add" to track)
 
-			</code></pre></p>
-                </section>
+		</code></pre></p>
+        </section>
 
-		<!-- code -->
-                <section>
-                    <h2>Agregando nuevos files</h2>
-			<p></p>
-			<p><pre><code>
-    $ git add README
+	<!-- code -->
+        <section>
+            <h2>Agregando nuevos files</h2>
+		<p></p>
+		<p><pre><code>
+$ git add README
 
-    $ git status
-    # On branch master
-    # Changes to be committed:
-    #   (use "git reset HEAD &lt;file&gt;..." to unstage)
-    #
-    #   new file:   README
-    #
+$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+#   new file:   README
+#
 			</code></pre></p>
                 </section>
 
@@ -231,28 +249,28 @@
                     <h2>Subiendo modificaciones a staging</h2>
 			<p></p>
 			<p><pre><code>
-    $ git status
-    # On branch master
-    # Changes to be committed:
-    #   (use "git reset HEAD &lt;file&gt;..." to unstage)
-    # 
-    #   new file:   README
-    #
-    # Changed but not updated:
-    #   (use "git add &lt;file&gt;..." to update what will be committed)
-    # 
-    #   modified:   benchmarks.rb
-    # 
+$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
+# 
+#   new file:   README
+#
+# Changed but not updated:
+#   (use "git add &lt;file&gt;..." to update what will be committed)
+# 
+#   modified:   benchmarks.rb
+# 
 
-    $ git add benchmarks.rb
-    $ git status
-    # On branch master
-    # Changes to be committed:
-    #   (use "git reset HEAD &lt;file&gt;..." to unstage)
-    # 
-    #   new file:   README
-    #   modified:   benchmarks.rb
-    # 
+$ git add benchmarks.rb
+$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
+# 
+#   new file:   README
+#   modified:   benchmarks.rb
+# 
 			</code></pre></p>
                 </section>
 
@@ -261,20 +279,20 @@
                     <h2>Ignorando cambios (.gitignore)</h2>
 			<p></p>
 			<p><pre><code data-trim>
-    $ cat .gitignore 
-    *target/
-    *.settings/
-    *.classpath
-    *.project
-    *bin/
-			</code></pre></p>
-			<p><pre><code data-trim>
-    # a comment - this is ignored
-    *.a       # no .a files
-    !lib.a    # but do track lib.a, even though you're ignoring .a files above
-    /TODO     # only ignore the root TODO file, not subdir/TODO
-    build/    # ignore all files in the build/ directory
-    doc/*.txt # ignore doc/notes.txt, but not doc/server/arch.txt
+$ cat .gitignore 
+*target/
+*.settings/
+*.classpath
+*.project
+*bin/
+		</code></pre></p>
+		<p><pre><code data-trim>
+# a comment - this is ignored
+*.a       # no .a files
+!lib.a    # but do track lib.a, even though you're ignoring .a files above
+/TODO     # only ignore the root TODO file, not subdir/TODO
+build/    # ignore all files in the build/ directory
+doc/*.txt # ignore doc/notes.txt, but not doc/server/arch.txt
 			</code></pre></p>
                 </section>
 
@@ -283,37 +301,36 @@
                     <h3>Viendo cambios con mas detalle</h3>
 			<p></p>
 			<p><pre><code data-trim>
-    $ git status
-    # On branch master
-    # Changes to be committed:
-    #   (use "git reset HEAD &lt;file&gt;..." to unstage)
-    #
-    #   new file:   README
-    #
-    # Changed but not updated:
-    #   (use "git add &lt;file&gt;..." to update what will be committed)
-    #
-    #   modified:   benchmarks.rb
-    #
-
+$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+#   new file:   README
+#
+# Changed but not updated:
+#   (use "git add &lt;file&gt;..." to update what will be committed)
+#
+#   modified:   benchmarks.rb
+#
 			</code></pre></p>
 			<p><pre><code data-trim>
-    $ git diff
-    diff --git a/benchmarks.rb b/benchmarks.rb
-    index 3cb747f..da65585 100644
-    --- a/benchmarks.rb
-    +++ b/benchmarks.rb
-    @@ -36,6 +36,10 @@ def main
-               @commit.parents[0].parents[0].parents[0]
-             end
+$ git diff
+diff --git a/benchmarks.rb b/benchmarks.rb
+index 3cb747f..da65585 100644
+--- a/benchmarks.rb
++++ b/benchmarks.rb
+@@ -36,6 +36,10 @@ def main
+       @commit.parents[0].parents[0].parents[0]
+     end
 
-    +        run_code(x, 'commits 1') do
-    +          git.commits.size
-    +        end
-    +
-             run_code(x, 'commits 2') do
-               log = git.commits('master', 15)
-               log.size
++        run_code(x, 'commits 1') do
++          git.commits.size
++        end
++
+     run_code(x, 'commits 2') do
+       log = git.commits('master', 15)
+       log.size
 			</code></pre></p>
                 </section>
 
@@ -322,18 +339,18 @@
                     <h2>Viendo los cambios (staging o cacheados)</h2>
 			<p></p>
 			<p><pre><code data-trim>
-    $ git diff --cached
-    diff --git a/README b/README
-    new file mode 100644
-    index 0000000..03902a1
-    --- /dev/null
-    +++ b/README2
-    @@ -0,0 +1,5 @@
-    +grit
-    + by Tom Preston-Werner, Chris Wanstrath
-    + http://github.com/mojombo/grit
-    +
-    +Grit is a Ruby library for extracting information from a Git repository     
+$ git diff --cached
+diff --git a/README b/README
+new file mode 100644
+index 0000000..03902a1
+--- /dev/null
++++ b/README2
+@@ -0,0 +1,5 @@
++grit
++ by Tom Preston-Werner, Chris Wanstrath
++ http://github.com/mojombo/grit
++
++Grit is a Ruby library for extracting information from a Git repository     
 			</code></pre></p>
                 </section>
 
@@ -342,20 +359,20 @@
                     <h2>Commiteando los cambios</h2>
 			<p></p>
 			<p><pre><code data-trim>
-    $ git commit
+$ git commit
 
-    # Please enter the commit message for your changes. Lines starting
-    # with '#' will be ignored, and an empty message aborts the commit.
-    # On branch master
-    # Changes to be committed:
-    #   (use "git reset HEAD &lt;file&gt;..." to unstage)
-    #
-    #       new file:   README
-    #       modified:   benchmarks.rb
-    ~
-    ~
-    ~
-    ".git/COMMIT_EDITMSG" 10L, 283C
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+#       new file:   README
+#       modified:   benchmarks.rb
+~
+~
+~
+".git/COMMIT_EDITMSG" 10L, 283C
 			</code></pre></p>
                 </section>
 
@@ -363,53 +380,54 @@
                 <section>
                     <h2>Borrando</h2>
 			<p></p>
-			<p><pre><code data-trim>
-    $ git rm grit.gemspec
-    rm 'grit.gemspec'
-    $ git status
-    # On branch master
-    #
-    # Changes to be committed:
-    #   (use "git reset HEAD &lt;file&gt;..." to unstage)
-    #
-    #       deleted:    grit.gemspec
-    #
-			</code></pre></p>
-                </section>
+<p>
+<pre><code data-trim>
+$ git rm grit.gemspec
+$ rm 'grit.gemspec'
+$ git status
+# On branch master
+#
+# Changes to be committed:
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+#       deleted:    grit.gemspec
+#
+</code></pre></p>
+             </section>
 
 		<!-- code -->
                 <section>
                     <h2>Renombrando o moviendo</h2>
 			<p><pre><code data-trim>
-    $ git mv README.txt README
-    $ git status
-    # On branch master
-    # Your branch is ahead of 'origin/master' by 1 commit.
-    #
-    # Changes to be committed:
-    #   (use "git reset HEAD &lt;file&gt;..." to unstage)
-    #
-    #       renamed:    README.txt -> README
-    #
+$ git mv README.txt README
+$ git status
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+#
+# Changes to be committed:
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+#       renamed:    README.txt -> README
+#
 			</code></pre></p>
 
 <p>git es suficientemente inteligente para detectarlo si no se lo informamos</p>
 			<p><pre><code data-trim>
-
-    $ mv README.txt README
-    $ git rm README.txt
-    $ git add README
+$ mv README.txt README
+$ git rm README.txt
+$ git add README
 			</code></pre></p>
                 </section>
 
 		<!-- code -->
                 <section>
                     <h2>Deshaciendo último commit: commit --amend</h2>
-			<p></p>
-			<p><pre><code data-trim>
-    $ git commit -m 'initial commit'
-    $ git add forgotten_file
-    $ git commit --amend
+			<p>
+<img src="img/amen.jpg" style="float: right; width: 40%;">
+<pre><code data-trim>
+$ git commit -m 'initial commit'
+$ git add forgotten_file
+$ git commit --amend
 			</code></pre></p>
                 </section>
 
@@ -418,34 +436,34 @@
                     <h2>Deshaciendo cambios: reset</h2>
 			<p>supongamos este caso ... </p>
 			<p><pre><code data-trim>
-    $ git add .
-    $ git status
-    # On branch master
-    # Changes to be committed:
-    #   (use "git reset HEAD &lt;file&gt;..." to unstage)
-    #
-    #       modified:   README.txt
-    #       modified:   benchmarks.rb
-    #
+$ git add .
+$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+#       modified:   README.txt
+#       modified:   benchmarks.rb
+#
 			</code></pre></p>
 			<p> ... y queremos volver para atrás y no commitear benchmarks.rb</p>
 			<p><pre><code data-trim>
-    $ git reset HEAD benchmarks.rb
-    benchmarks.rb: locally modified
+$ git reset HEAD benchmarks.rb
+benchmarks.rb: locally modified
 
-    $ git status
-    # On branch master
-    # Changes to be committed:
-    #   (use "git reset HEAD &lt;file&gt;..." to unstage)
-    #
-    #       modified:   README.txt
-    #
-    # Changed but not updated:
-    #   (use "git add &lt;file&gt;..." to update what will be committed)
-    #   (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
-    #
-    #       modified:   benchmarks.rb
-    #
+$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+#       modified:   README.txt
+#
+# Changed but not updated:
+#   (use "git add &lt;file&gt;..." to update what will be committed)
+#   (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+#
+#       modified:   benchmarks.rb
+#
 			</code></pre></p>
                 </section>
 
@@ -456,24 +474,24 @@
 			<h3>git log</h3>
 			<p></p>
 			<p><pre><code data-trim>
-    $ git log
-    commit ca82a6dff817ec66f44342007202690a93763949
-    Author: Scott Chacon <schacon@gee-mail.com>
-    Date:   Mon Mar 17 21:52:11 2008 -0700
+$ git log
+commit ca82a6dff817ec66f44342007202690a93763949
+Author: Scott Chacon <schacon@gee-mail.com>
+Date:   Mon Mar 17 21:52:11 2008 -0700
 
-        changed the version number
+changed the version number
 
-    commit 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7
-    Author: Scott Chacon <schacon@gee-mail.com>
-    Date:   Sat Mar 15 16:40:33 2008 -0700
+commit 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7
+Author: Scott Chacon <schacon@gee-mail.com>
+Date:   Sat Mar 15 16:40:33 2008 -0700
 
-        removed unnecessary test code
+removed unnecessary test code
 
-    commit a11bef06a3f659402fe7563abf99ad00de2209e6
-    Author: Scott Chacon <schacon@gee-mail.com>
-    Date:   Sat Mar 15 10:31:28 2008 -0700
+commit a11bef06a3f659402fe7563abf99ad00de2209e6
+Author: Scott Chacon <schacon@gee-mail.com>
+Date:   Sat Mar 15 10:31:28 2008 -0700
 
-        first commit
+first commit
 			</code></pre></p>
                 </section>
                 <section>
@@ -664,10 +682,13 @@ $ git help commit
                 <section>
                     <h1>Branching</h1>
                     <h2>Qué es un rama (branch) en Git?</h2>
+<ul>
+<img src="img/branches.jpg" style="float: right; width: 40%">
                         <li class="fragment roll-in">Un branch en Git es un puntero ágil y móvil a un commit.</li>
                         <li class="fragment roll-in">Al crear un repositorio, Git te provee un branch que "apunta" al último commit. Por default tiene por nombre master.</li>
                         <li class="fragment roll-in">Puedes crear tus propios branches/ramas, a partir de cualquier commit.</li>
                         <li class="fragment roll-in">A medida que realices nuevos commits, ese puntero se irá moviendo hacia adelante automáticamente.</li>
+</ul>
                 </section>
 
 
@@ -689,16 +710,17 @@ $ git help commit
                 <section>
                       <h2>Nueva rama iss53</h2>
                       <p><pre><code data-trim>
-    $ git checkout -b iss53
-    Switched to a new branch "iss53"
+$ git checkout -b iss53
+Switched to a new branch "iss53"
                       </code></pre></p>
                       <img title="" src="img/branching2.png">
                 </section>
                 <section>
                       <h2>Commiteamos en la nueva rama iss53</h2>
                       <p><pre><code data-trim>
-    $ vim index.html
-    $ git commit -a -m 'added a new footer [issue 53]'
+$ vim index.html
+...
+$ git commit -a -m 'added a new footer [issue 53]'
                       </code></pre></p>
                       <img title="" src="img/branching3.png">
                       <p>observar como se mueve hacia adelante la referencia</p>
@@ -707,8 +729,8 @@ $ git help commit
                     <h2>Volviendo a master para trabajar en el fix</h2>
 			<p></p>
 			<p><pre><code data-trim>
-    $ git checkout master
-    Switched to branch "master"
+$ git checkout master
+Switched to branch "master"
                          </code></pre></p>
                          <p>Git resetea el directorio de trabajo para que sea el mismo que corresponde al último commit en master.</p>
                 </section>
@@ -721,6 +743,7 @@ Switched to a new branch "hotfix"
     
     
 $ vim index.html
+...
 $ git commit -a -m 'fixed the broken email address'
 [hotfix]: created 3a0874c: "fixed the broken email address"
 1 files changed, 0 insertions(+), 1 deletions(-)
@@ -745,6 +768,7 @@ README |    1 -
                 <section>
                     <h2>Fast forwarding branches</h2>
 			<p>Una rama que acaba de ser actualizada con commits mas recientes, es susceptible de hacerle fast-forwarding cuando sus commits son ancestros de los nuevos commits.
+<img src="img/ff.jpg" style="float: right; width: 40%">
 </p>
                 </section>
 		<!-- code -->
@@ -760,6 +784,7 @@ Deleted branch hotfix (3a0874c).
 $ git checkout iss53
 Switched to branch "iss53"
 $ vim index.html
+...
 $ git commit -a -m 'finished the new footer [issue 53]'
 [iss53]: created ad82d7a: "finished the new footer [issue 53]"
 1 files changed, 1 insertions(+), 0 deletions(-)

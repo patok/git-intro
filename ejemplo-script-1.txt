@@ -1,0 +1,28 @@
+Script ejemplo uso Git c/ repo remoto, con 2 users
+
+u1 task: unzip bootstrap template
+
+* u1 setup código básico - bootstrap off canvas template?
+* u1 inicializa repo (git init)
+* u1 hacer el primer commit
+* u1 agrega repo remoto vacío (git remote add)
+* u1 pushea commits (push -u)
+
+u2 task: cambiar navegación y Hello World!, background-color .jumbotron
+
+* u2 entra a escena: sync una copia (git clone)
+* u2 crea nueva rama dev
+* u2 commitea rama local (mostrar commit interactivo)
+* u2 mergea master
+* u2 pushea master remoto
+
+u1 task: (en simultaneo) links sidebar en master, background-color .jumbotron
+
+* u1 commitea en master
+* u1 intenta pushear, divergen
+* u1 sync (fetch) y (merge), resolución conflicto (rebasear en master?, nueva rama)
+* u1 pushea exitosamente
+
+* u2 sync (fetch), puede hacer fast forward
+
+
