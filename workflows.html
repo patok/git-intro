@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Introducción a GIT</title>
+
+        <meta name="description" content="Flujos trabajo en Git">
+        <meta name="author" content="Patricio Keilty">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+        <script>
+            if( window.location.search.match( /print-pdf/gi ) ) {
+                var link = document.createElement( 'link' );
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.href = 'css/print/pdf.css';
+                document.getElementsByTagName( 'head' )[0].appendChild( link );
+            }
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+
+        <style type="text/css">
+
+
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+
+                <!-- Slide #1 -->
+                <section>
+                    <h1>GIT: flujos de trabajo</h1>
+                    <p><img title="Git logo" src="img/2color-lightbg.png"></p>
+                    <p>
+			<small>Created by <a href="http://twitter.com/patokeilty">@patokeilty</a></small>
+			<p>
+                        <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+                            <img alt="Licencia Creative Commons" style="border-width:0" src="img/cc-by-nc-sa-88x31.png" />
+                        </a>
+                    </p>
+                </section>
+
+                <!-- Slide #2 -->
+                <section>
+                    <h1>Comparando flujos de trabajo</h1>
+<p>Vamos a presentar los modelos de trabajo mas usuales con repositorios basados en Git.</p>
+<p>De ninguna manera estos son los únicos posibles, son expuestos aquí a manera de guía. </p>
+<ul>
+    <li class="fragment roll-in">Centralizado (alla SVN)</li>
+    <li class="fragment roll-in">Feature based</li>
+    <li class="fragment roll-in">Gitflow</li>
+</ul>
+                </section>
+
+            <section>
+                <section>
+                    <h1>Centralizado</h1>
+                    <ul>
+                        <li class="fragment roll-in">provee repo central como copia autorizada (truth source)</li>
+                        <li class="fragment roll-in">su flujo de trabajo recuerda a <strong>SVN</strong> </li>
+                        <li class="fragment roll-in">todos los devs tienen una copia local</li>
+                        <li class="fragment roll-in">ventaja: permite aislar al desarrollador, commitea local hasta que debe compartir sus cambios (a través del repo centralizado o upstream)</li>
+                        <li class="fragment roll-in">único branch de nombre <strong>master</strong>, similar al trunk de svn</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Centralizado (cont.)</h2>
+                    <div style="position: relative; margin: 0 auto; width: 879px; height: 535px;">
+                        <div class="fragment current-visible" style="position: absolute; z-index: 1;">
+                            <img title="delta" src="img/remote1.png">
+<p>Clona el repositorio, queda ubicado en la rama principal
+<pre><code data-trim>
+$ git clone git:git@servername:port/repo.git
+$ git checkout master
+</code></pre></p>
+                        </div>
+                        <div class="fragment current-visible" style="position: absolute; z-index: 1;">
+                            <img title="delta" src="img/remote2.png">
+<p>En sus copias locales edita código, y commitea
+<pre><code data-trim>
+$ git commit -m "New code from Bob, first commit."
+$ git commit -m "Fixed some issue, second commit."
+</code></pre></p>
+                        </div>
+                        <div class="fragment current-visible" style="position: absolute; z-index: 1;">
+                            <img title="delta" src="img/remote2.png">
+<p>Finalmente <strong>push</strong>ea ambos cambios al repositorio central, y estos quedan listos para compartir con el equipo
+<pre><code data-trim>
+$ git push origin master
+</code></pre></p>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h2>Centralizado (cont.)</h2>
+                    <h3>Resolviendo conflictos</h3>
+                    <p>Va a ocurrrir que en determinado momento los commits de un developer van a diverger del repositorio central, y no va a poder pushearlos!</p>
+
+                    <div style="position: relative; margin: 0 auto; width: 879px; height: 535px;">
+                        <div class="fragment current-visible" style="position: absolute; z-index: 1;">
+                            <img title="delta" src="img/remote1.png">
+<p>Para poder publicar sus commits, necesita traer los cambios del repo central y <strong>rebase</strong>ar sus cambios sobre lo último. El resultado es una historia perfectamente lineal (como en SVN).</p>
+                        </div>
+
+                    </div>
+                </section>
+
+                
+            </section>
+
+                
+            <section>
+                <section>
+                    <h1>Gitflow</h1>
+                    * referencia a Vincent Driessen at nvie (iframe? / enlace)
+                    <ul>
+                        <li class="fragment roll-in">es un sistema de control de versiones de <strong>código abierto</strong> </li>
+                        <li class="fragment roll-in">diseñado para ser: veloz, simple, distribuido, que soporte desarrollo no lineal (muchas ramas en paralelo),maneje grandes proyectos de manera eficiente (tiempo y espacio)</li>
+                        <li class="fragment roll-in">se desarrolló como control de versiones para el kernel del SO Linux en el 2005 <img src="img/young-linus.gif" style="float: right;"></li>
+                        <li class="fragment roll-in">su autor es Linus Torvalds (autor tb del kernel linux)</li>
+	                    <li  class="fragment roll-in">! segunda acepción: un rastreador estúpido/simple de info - <a href="http://translate.google.com/#auto|es|you%20are%20a%20git">stupid content tracker</a></li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Centralizado (cont.)</h2>
+                    <p>segunda</p>
+                </section>
+                <section>
+                    <h2>Centralizado (cont.)</h2>
+                    <p>tercera</p>
+                </section>
+
+                
+            </section>
+    
+
+
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                // available themes are in /css/theme
+                theme: Reveal.getQueryHash().theme,
+
+                // default/cube/page/concave/zoom/linear/fade/none
+                transition: Reveal.getQueryHash().transition || 'fade',
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>
