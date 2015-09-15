@@ -90,7 +90,7 @@
                     <h2>Centralizado (cont.)</h2>
                     <div style="position: relative; margin: 0 auto; width: 879px; height: 535px;">
                         <div class="fragment current-visible" style="position: absolute; z-index: 1;">
-                            <img title="delta" src="img/remote1.png">
+                            <img title="delta" src="img/centralized-workflow-1.svg" width="879px">
 <p>Clona el repositorio, queda ubicado en la rama principal
 <pre><code data-trim>
 $ git clone git:git@servername:port/repo.git
@@ -98,7 +98,7 @@ $ git checkout master
 </code></pre></p>
                         </div>
                         <div class="fragment current-visible" style="position: absolute; z-index: 1;">
-                            <img title="delta" src="img/remote2.png">
+                            <img title="delta" src="img/centralized-workflow-2.svg" width="879px">
 <p>En sus copias locales edita código, y commitea
 <pre><code data-trim>
 $ git commit -m "New code from Bob, first commit."
@@ -106,7 +106,7 @@ $ git commit -m "Fixed some issue, second commit."
 </code></pre></p>
                         </div>
                         <div class="fragment current-visible" style="position: absolute; z-index: 1;">
-                            <img title="delta" src="img/remote2.png">
+                            <img title="delta" src="img/centralized-workflow-3.svg" width="879px">
 <p>Finalmente <strong>push</strong>ea ambos cambios al repositorio central, y estos quedan listos para compartir con el equipo
 <pre><code data-trim>
 $ git push origin master
@@ -121,8 +121,15 @@ $ git push origin master
 
                     <div style="position: relative; margin: 0 auto; width: 879px; height: 535px;">
                         <div class="fragment current-visible" style="position: absolute; z-index: 1;">
-                            <img title="delta" src="img/remote1.png">
+                            <img title="delta" src="img/centralized-conflicts.svg" width="879px" height="300px">
 <p>Para poder publicar sus commits, necesita traer los cambios del repo central y <strong>rebase</strong>ar sus cambios sobre lo último. El resultado es una historia perfectamente lineal (como en SVN).</p>
+                        </div>
+
+                        <div class="fragment current-visible" style="position: absolute; z-index: 1;">
+                            <img title="delta" src="img/centralized-conflicts-2.svg" width="879px" height="300px">
+<p><pre><code data-trim>
+$ git pull --rebase origin master
+</code></pre></p>
                         </div>
 
                     </div>
@@ -131,6 +138,7 @@ $ git push origin master
                 
             </section>
 
+    
                 
             <section>
                 <section>
