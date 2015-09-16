@@ -70,7 +70,7 @@
 <p>De ninguna manera estos son los únicos posibles, son expuestos aquí a manera de guía. </p>
 <ul>
     <li class="fragment roll-in">Centralizado (alla SVN)</li>
-    <li class="fragment roll-in">Feature based</li>
+    <li class="fragment roll-in">Feature branches</li>
     <li class="fragment roll-in">Gitflow</li>
 </ul>
                 </section>
@@ -138,29 +138,112 @@ $ git pull --rebase origin master
                 
             </section>
 
-    
+
+
+
+
+
+            <section>
+                <section>
+                    <h1>Feature branches</h1>
+                    <ul>
+                        <li class="fragment roll-in">emplea repo central como copia autorizada</li>
+                        <li class="fragment roll-in">en vez de commitear siempre a <strong>master</strong>, se crea rama para la nueva feature en que se va a trabajar </li>
+                        <li class="fragment roll-in">los nombres de las ramas deben ser descriptivas: issue-#21, new-header</li>
+                        <li class="fragment roll-in">ventaja: permite mayor independencia al desarrollador, permite compartir el feature en que está  trabajando sin necesidad de publicar a la rama master.</li>
+                        <li class="fragment roll-in">para llevar los cambios de la rama de la feature a la principal o <strong>master</strong>, se emplea un mecanismo conocido como <strong>pull request</strong></li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Feature branches (cont.)</h2>
+                    <h3>Pull request</h3>
+<p class="fragment roll-in">Básicamente expresa el deseo del desarrollador de juntar (mergear) los cambios de su feature a la rama principal, entonces se aprovecha como mecanismo de revisión del código, previamente a ser integrada con master.</p>
+<p class="fragment roll-in">Una vez que el pull request ha sido aprobado (sea cual fuere la manera), la publicación de esa feature es similar al caso del workflow centralizado.</p>
+
+                </section>
+
+                
+                
+                
+                <section>
+                    <h2>Feature branches (cont.)</h2>
+                    <h3>Ejemplo</h3>
+                    <ul>
+                        <li class="fragment roll-in">Bob inicia un nuevo feature branch
+<pre><code data-trim>
+$ git checkout -b new-feature master
+</code></pre>
+                        </li>
+                        <li class="fragment roll-in">Bob trabaja en la feature ...
+<pre><code data-trim>
+$ git status
+...
+$ git add 
+$ git commit 
+</code></pre>
+                        </li>
+                        <li class="fragment roll-in">cuando cree ha terminado
+<pre><code data-trim>
+$ git push -u origin new-feature
+</code></pre>
+                        </li>
+                        <li class="fragment roll-in">Bob emite un pull request utilizando la herramienta provista (GitLabs, Stash, Github)</li>
+                    
+                    </ul>
+                
+                </section>
+
+                    
+                <section>
+                    <h2>Feature branches (cont.)</h2>
+                    <h3>Ejemplo</h3>
+                    <ul>
+                        <li class="fragment roll-in">Alice es notificada del nuevo pull request, ella examina y comenta el código de Bob. Luego de varias idas y vueltas con nutrido intercambio de ideas, parecen estar de acuerdo en integrar lo nuevo a master. </li>
+                        <li class="fragment roll-in">alguien debe mergear a master y pushear los cambios
+<pre><code data-trim>
+$ git checkout master
+$ git pull
+$ git pull origin new-feature (git merge new-feature)
+...
+$ git push
+</code></pre>
+                        </li>
+                    
+                    </ul>
+                
+                </section>
+
+                
+            </section>
+
+
+
+
+
+
+
                 
             <section>
                 <section>
                     <h1>Gitflow</h1>
-                    * referencia a Vincent Driessen at nvie (iframe? / enlace)
                     <ul>
-                        <li class="fragment roll-in">es un sistema de control de versiones de <strong>código abierto</strong> </li>
-                        <li class="fragment roll-in">diseñado para ser: veloz, simple, distribuido, que soporte desarrollo no lineal (muchas ramas en paralelo),maneje grandes proyectos de manera eficiente (tiempo y espacio)</li>
-                        <li class="fragment roll-in">se desarrolló como control de versiones para el kernel del SO Linux en el 2005 <img src="img/young-linus.gif" style="float: right;"></li>
-                        <li class="fragment roll-in">su autor es Linus Torvalds (autor tb del kernel linux)</li>
-	                    <li  class="fragment roll-in">! segunda acepción: un rastreador estúpido/simple de info - <a href="http://translate.google.com/#auto|es|you%20are%20a%20git">stupid content tracker</a></li>
+                        <li class="fragment roll-in">es un flujo de trabajo con git propuesto por <a href="http://nvie.com/posts/a-successful-git-branching-model/" >Vincent Driessen at nvie</a> </li>
+                        <li class="fragment roll-in">muy difundido y empleado en la actualidad</li>
+                        <li class="fragment roll-in">un poco mas complejo que los anteriores ya que establece varias prácticas y conceptos comunes: stable branch(master), branch integración(develop), release branches (release/NN), hotfix(hotfix/id), feature branches (feature/id)</li>
                     </ul>
                 </section>
                 <section>
-                    <h2>Centralizado (cont.)</h2>
-                    <p>segunda</p>
-                </section>
-                <section>
-                    <h2>Centralizado (cont.)</h2>
-                    <p>tercera</p>
-                </section>
+                    <h2>Gitflow (cont.)</h2>
+                    <p></p>
+                    <div style="position: relative; margin: 0 auto; width: 879px; height: 535px;">
+                        <div class="" style="position: absolute; z-index: 1;">
+                            <img title="delta" src="img/gitflow.svg" width="879px">
+<p></p>
+                        </div>
 
+                    </div>
+                </section>
                 
             </section>
     
